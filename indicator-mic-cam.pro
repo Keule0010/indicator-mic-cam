@@ -1,7 +1,5 @@
 QT       += core gui
-
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
-
 CONFIG += c++11
 
 # You can make your code fail to compile if it uses deprecated APIs.
@@ -21,15 +19,13 @@ HEADERS += \
     src/unused.h \
     src/webcamera.h
 
-FORMS +=
+unix {
+    target.path = /usr/local/bin/
+    INSTALLS += target
 
-# Default rules for deployment.
-qnx: target.path = /tmp/$${TARGET}/bin
-else: unix:!android: target.path = /opt/$${TARGET}/bin
-!isEmpty(target.path): INSTALLS += target
-
-unix: CONFIG += link_pkgconfig
-unix: PKGCONFIG += libpulse
+    CONFIG += link_pkgconfig
+    PKGCONFIG += libpulse
+}
 
 DISTFILES += \
     README.rst
